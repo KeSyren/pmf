@@ -1,15 +1,10 @@
 system load handler
 db2 database inactive handler
-hostdown handler
-system_director_alert_handler
-tsm migration process completed with failed state anr1893e
-ihs handler
+hostdown handler 
 db2 percent db connection executing is to high handler
-tablespace
-domino server not responding handler
+tablespace 
 sysinfo and error log check handler
 mssql database inconsistent state handler
-brocade san c3 discards
 itm service handler
 listener_dbhandler
 process cpu spike handler
@@ -21,62 +16,46 @@ mssql database offline handler
 unix connection broker
 aggregate disk drive usage alert handler
 mq q manager down handler
-disk inode handler
 process missing
 high page usage handler
-tsm missed and failed backups
 db2 backup too old handler
 db2 database restore pending handler
 process handler
-system available memory
 os_archive_dest_space_check_dbhandler
 ihs healthcheck handler
-undelivered mail
 db2 lock wait percent too high handler
 mssql high filegroup percent space used handler
 mssql buffer cache hit ratio is low handler
 ntp restart handler
 daemon handler
 mssql database space used percent is high handler
-domino service down handler
 mssql server inactive (standalone and cluster)
 system available memory handler
-system_director_client_restart_handler
 db2 database inactive
 mssql failed jobs too high handler
 windows service handler
-db2 precent db secondary log used too high Handler
 zombies handler
 asm_space_check_diskgroup_dbhandler
 os event handler
 mssql high blocked processes handler
-server no longer polling drive anr8471e
 db2 instance down handler
 database_init_dbhandler
 default was cert expiration
 mssql database high space alert
-tsm scheduled command failed anr2752e
 rdp port 3389 handler
 mssql disk io error
 mssql database mirroring state not synchronized handler
-websphere jvm handler
 jvm healthcheck handler
 db2 filesystem usage handler
-db2 transaction log full handler
-jvm handler
 swap handler
 mssql number of high severity errors handler
 system disk
 db2 precent db secondary log used too high handler
-overall tsm missed and failed backups
-checkout libvolume failed anr8437e
 disk path checker
 vmware host cpu alert handler
 os_trace_dump_dest_space_check_dbhandler
 sysinfo and errlog check handler
-dummy ticket handler
 instance_init_dbhandler
-db2 missing dprop process handler
 disk handler
 asm_space_check_disk_dbhandler
 db2 instance down
