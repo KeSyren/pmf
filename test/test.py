@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 
-from util.load_data import build_ml_1m, load_rating_matrix
+from util.load_data import build_ml_len, load_rating_matrix
 from mf.matrix_factorization import MatrixFactorization as MF
 from mf.bayesian_matrix_factorization import BayesianMatrixFactorization as BMF
 # from mf.theano.matrix_factorization import MatrixFactorization as MF_theano
@@ -10,7 +10,7 @@ from mf.bayesian_matrix_factorization import BayesianMatrixFactorization as BMF
 # TODO: finish all test case
 class TestLoadData(unittest.TestCase):
     def setUp(self):
-        num_user, num_item, ratings = build_ml_1m()
+        num_user, num_item, ratings = build_ml_len()
         np.random.shuffle(ratings)
         self.num_user = num_user
         self.num_item = num_item

@@ -1,8 +1,8 @@
 system load handler
 db2 database inactive handler
-hostdown handler 
+hostdown handler
 db2 percent db connection executing is to high handler
-tablespace 
+tablespace
 sysinfo and error log check handler
 mssql database inconsistent state handler
 itm service handler

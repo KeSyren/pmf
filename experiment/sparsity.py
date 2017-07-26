@@ -6,10 +6,10 @@ Created on Nov 14, 2016
 
 import numpy as np
 import matplotlib.pyplot as plt
-from util.load_data import build_ml_1m, build_rating_matrix
+from util.load_data import build_ml_len, build_rating_matrix
 
 def draw_sparsity_user():
-    num_user, num_item, ratings = build_ml_1m()
+    num_user, num_item, ratings = build_ml_len()
     matrix = build_rating_matrix(num_user, num_item, ratings)
     print matrix.shape
     

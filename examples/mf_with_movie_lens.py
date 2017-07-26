@@ -1,6 +1,6 @@
 import numpy as np
 
-from util.load_data import build_ml_1m
+from util.load_data import build_ml_len
 from mf.matrix_factorization import MatrixFactorization
 from mf.bayesian_matrix_factorization import BayesianMatrixFactorization
 from util.evaluation_metrics import RMSE
@@ -9,7 +9,7 @@ from util.evaluation_metrics import RMSE
 if __name__ == "__main__":
 
     # load MovieLens data
-    num_user, num_item, ratings = build_ml_1m()
+    num_user, num_item, ratings = build_ml_len()
     np.random.shuffle(ratings)
 
     # set feature numbers

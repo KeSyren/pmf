@@ -7,7 +7,7 @@ import scipy.sparse as sparse
 import re
 
 
-def build_ml_1m():
+def build_ml_len():
     """
     build movie lens 1M ratings from original ml_1m rating file.
     need to download and put ml_1m data in /data folder first.
@@ -16,7 +16,7 @@ def build_ml_1m():
     num_user = 943
     num_item = 1682
     print("\nloadind movie lens 100K data")
-    with open("../data/ratings.dat", "rb") as f:
+    with open("../data/movielen/ratings.dat", "rb") as f:
         iter_lines = iter(f)
         ratings = []
         for line_num, line in enumerate(iter_lines):
@@ -117,9 +117,10 @@ def train_rating120(rating_matrix):
 
  
 def main():
-    num_user, num_item, ratings = build_ml_1m()
+    num_user, num_item, ratings = build_ml_len()
     matrix = build_rating_matrix(num_user, num_item, ratings)
     train_matrix = train_rating120(matrix)
+    print len(train_matrix)
     
 if __name__ == "__main__":
     main()

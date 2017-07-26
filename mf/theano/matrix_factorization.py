@@ -5,7 +5,7 @@ Theano: http://deeplearning.net/software/theano/
 
 import numpy as np
 from ..base import Base
-from util.load_data import build_ml_1m
+from util.load_data import build_ml_len
 from util.evaluation_metrics import RMSE
 
 import time
@@ -172,7 +172,7 @@ def example():
     """simple test and performance measure
     """
 
-    num_user, num_item, ratings = build_ml_1m()
+    num_user, num_item, ratings = build_ml_len()
     # suffle_data
     np.random.shuffle(ratings)
 

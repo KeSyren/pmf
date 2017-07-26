@@ -9,7 +9,7 @@ Reference Matlab code: http://www.cs.toronto.edu/~rsalakhu/BPMF.html
 
 import numpy as np
 from base import Base, DimensionError
-from util.load_data import build_ml_1m
+from util.load_data import build_ml_len
 from util.evaluation_metrics import RMSE
 import time
 

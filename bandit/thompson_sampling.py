@@ -9,7 +9,7 @@ import math
 import numpy as np
 import numpy.random as rand
 from numpy.linalg import inv, cholesky
-from util.load_data import build_ml_1m, best_rating_user, build_rating_matrix, train_rating120
+from util.load_data import build_ml_len, best_rating_user, build_rating_matrix, train_rating120
 
 
 class ThompsonSampling():
@@ -134,7 +134,7 @@ def test(num_feature=30, delta=1, lamda_p=2):
     mu_Sigma_items = bmf_model.ret_mu_Sigma_item
     
     # split data to training & validation
-    num_user, num_item, ratings = build_ml_1m()
+    num_user, num_item, ratings = build_ml_len()
     matrix = build_rating_matrix(num_user, num_item, ratings)
     train_matrix = train_rating120(matrix)  
     test = train_matrix[0]

@@ -11,7 +11,8 @@ import numpy.random as rand
 from numpy.linalg import inv, cholesky
 
 from base import Base, DimensionError
-from util.load_data import build_ml_1m, build_rating_matrix
+# from util.load_data import build_ml_len, build_rating_matrix
+from util.load_ticket_data import build_ticket, build_ticket_rating_matrix
 from util.distributions import wishartrand
 from util.evaluation_metrics import RMSE
 
@@ -62,7 +63,9 @@ class BayesianMatrixFactorization(Base):
         self.user_features = 0.3 * np.random.rand(num_user, num_feature)
         self.item_features = 0.3 * np.random.rand(num_item, num_feature)
 
-        self.matrix = build_rating_matrix(self.num_user, self.num_item, params.get('ratingsMatirx'))
+        self.matrix = build_ticket_rating_matrix(self.num_user, self.num_item, params.get('ratingsMatirx'))
+        print "current : ", self.matrix.shape
+
 
     def estimate(self, iterations=100, tolerance=1e-5):
         last_rmse = None
@@ -169,7 +172,7 @@ class BayesianMatrixFactorization(Base):
         # update alpha_user
         self.alpha_user = wishartrand(df_post, WI_post)
 
-        # update mu_item
+        # update mu_user
         mu_temp = (self.beta_user * self.mu_user + N * X_bar) / \
             (self.beta_user + N)
         # print 'mu_temp', mu_temp.shape
@@ -187,11 +190,10 @@ class BayesianMatrixFactorization(Base):
         ret = []
         for item_id in xrange(self.num_item):
             vec = self.matrix[:, item_id] > 0.0
-            # print 'vec', vec.shape
-            # if vec.shape[0] == 0:
-            #    continue
+            if vec.shape[0] == 0:
+               continue
             #######features = self.user_features[vec, :]
-            features = self.item_features[vec, :]
+            features = self.user_features[vec, :]
             # print 'features', features.shape
             rating = self.matrix[vec, item_id] - self.mean_rating
           
@@ -225,10 +227,9 @@ class BayesianMatrixFactorization(Base):
         # Gibbs sampling for user features
         for user_id in xrange(self.num_user):
             vec = self.matrix[:, user_id] > 0.0
-#             print vec.shape
             # print "item_feature", self.item_features.shape
             features = self.item_features[vec, :]
-            print features.shape, self.item_features.shape
+           
             rating = self.matrix[vec, user_id] - self.mean_rating
             rating_len = len(rating)
             rating = np.reshape(rating, (rating_len, 1))
@@ -290,7 +291,8 @@ class BayesianMatrixFactorization(Base):
 def example():
     """simple test and performance measure
     """
-    num_user, num_item, ratings = build_ml_1m()
+    num_user, num_item, ratings = build_ticket()
+    
     # suffle_data
     np.random.shuffle(ratings)
 
@@ -301,13 +303,19 @@ def example():
     validation = ratings[train_size:]
 
     # params
-    num_feature = 30
+    num_feature = 5
     bmf_model = BayesianMatrixFactorization(
-        num_user, num_item, num_feature, train, validation, max_rating=5, min_rating=1, ratingsMatirx=ratings)
+        num_user, num_item, num_feature, train, validation, max_rating=1, min_rating=0, ratingsMatirx=ratings)
 
     start_time = time.clock()
-    bmf_model.estimate(1)
+    bmf_model.estimate(10)
     end_time = time.clock()
+    
+    mat = np.matrix(bmf_model.item_features)
+    with open('../data/ticket/item_feature', 'w') as f:
+        for line in mat:
+            np.savetxt(f, line, fmt='%.5f')
+
     print "time spend = %.3f" % (end_time - start_time)
 
     return bmf_model

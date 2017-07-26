@@ -15,7 +15,7 @@ import math
 import numpy as np
 import numpy.random as rand
 from numpy.linalg import inv, cholesky
-from util.load_data import build_ml_1m, best_rating_user, build_rating_matrix, train_rating120
+from util.load_ticket_data import build_ticket, best_rating_user, build_ticket_rating_matrix, train_rating120
 
 
 class EpsilonGreedy():
@@ -133,8 +133,8 @@ def test(num_feature, lamda_p, epsilon):
     item_features = bmf_model.item_features
     
     # split data to training & validation
-    num_user, num_item, ratings = build_ml_1m()
-    matrix = build_rating_matrix(num_user, num_item, ratings)
+    num_user, num_item, ratings = build_ticket()
+    matrix = build_ticket_rating_matrix(num_user, num_item, ratings)
     train_matrix = train_rating120(matrix)  
     test = train_matrix[0]
     ratings = []
